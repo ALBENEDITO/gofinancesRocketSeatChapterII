@@ -12,7 +12,7 @@ import {
     UserName,
     UserWrapper,
     Icon,
-    HighlightCards,
+    HighlightCards, 
     Transaction,
     Title,
     TransactionList
@@ -25,7 +25,7 @@ export function Dashboard(){
 
     const data: DataListProps[] = [
         {
-        id: 1,
+        id: 1, 
         type: 'positive',
         title: "Desenvolvimento de Site",
         amount: "R$ 12.000,00",
@@ -99,7 +99,7 @@ export function Dashboard(){
                 <Title>Listagem</Title>
                 <TransactionList 
                     data={data}
-                    keyExtractor={item => item.id }
+                    keyExtractor={item => item.id.toString() }
                     renderItem={({ item }) => <TransactionCard data={item}/> }
                 /> 
             </Transaction> 
