@@ -8,11 +8,9 @@ import {
 
 type Props = TextInputProps;
 
-export function Input(){
+export function Input({...rest} : Props){
 
     return(
-        <Container>
-          
-        </Container>
+        <Container {...rest}/>
     );
 }

@@ -3,6 +3,9 @@ import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 import { StatusBar } from 'react-native'
 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Remote debugger']);
+
 import {
   useFonts,
   Poppins_400Regular,
@@ -13,6 +16,7 @@ import {
 import theme from './src/global/styles/theme';
 // import { Dashboard } from './src/screens/Dashboard';
 import { Register } from './src/screens/Register';
+import { CategorySelect } from './src/screens/CategorySelect';
 
 
 export default function App() {
@@ -33,7 +37,7 @@ export default function App() {
         translucent
         barStyle="light-content"
       />
-      <Register />  
+      <Register/>  
     </ThemeProvider>)
   }
 
