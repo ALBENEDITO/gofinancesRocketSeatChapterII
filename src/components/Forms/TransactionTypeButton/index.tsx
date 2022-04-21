@@ -1,10 +1,13 @@
 import React from 'react';
 import {TouchableOpacityProps} from 'react-native'
+import { RectButtonProps } from 'react-native-gesture-handler';
+
 
 import { 
     Container,
     Title,
-    Icon
+    Icon,
+    Button
 } from './styles';
 
 const icons={
@@ -12,12 +15,11 @@ const icons={
     down: 'arrow-down-circle'    
 }
 
-interface Props extends TouchableOpacityProps {
-    type: 'up' | 'down';
+interface Props extends RectButtonProps{
     title: string;
-    isActive: boolean;
-
-}
+    type: 'up' | 'down';
+    isActive: boolean; // criado para saber se o botão está ativo. Ou seja, caso o botão esteja ativo vou aplicar uma cor, caso não esteja ativo será aplicada uma outra cor
+  }
 
 export function TransactionTypeButton( {
     type,
@@ -28,10 +30,13 @@ export function TransactionTypeButton( {
 
     return(
         <Container 
-            isActive={isActive}
+
+            isActive={isActive} 
             type={type}
-            {...rest}
         >
+        <Button  
+            {...rest} 
+        >  
             <Icon 
                 name={icons[type]}
                 type={type}
@@ -39,6 +44,7 @@ export function TransactionTypeButton( {
             <Title>
                 {title}
             </Title>
+        </Button>      
           
         </Container>
     );

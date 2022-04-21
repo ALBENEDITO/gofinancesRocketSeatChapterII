@@ -3,8 +3,7 @@ import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 import { StatusBar } from 'react-native'
 
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Remote debugger']);
+
 
 import {
   useFonts,
@@ -17,6 +16,7 @@ import theme from './src/global/styles/theme';
 import { AppRoutes } from "./src/routes/app.routes";
 
 import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { Form } from './src/screens/Register/styles';
 
@@ -39,9 +39,12 @@ export default function App() {
         translucent
         barStyle="light-content"
       />
-      <NavigationContainer>
-        <AppRoutes/>  
-      </NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <AppRoutes/>  
+        </NavigationContainer>
+        </GestureHandlerRootView>
+      
     </ThemeProvider>)
   }
 

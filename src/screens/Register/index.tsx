@@ -24,8 +24,7 @@ import {
 } from './styles';
 
 interface FormData {
-  name: string;
-  amount: string;  
+  [name: string]: any;
 }
 
 const schema = Yup.object().shape({
@@ -47,13 +46,14 @@ export function Register(){
       name: 'Categoria'
     });
 
+    //foi criado para lidar com os inputs do formulário e importado da ferramenta hook form
     const {
-      control,
-      handleSubmit,
-      formState: { errors }
+      control,  // que servir para registrar os inputs em nosso formulário
+      handleSubmit, // função que pega os valores do formulário e envia
+      formState: {errors} // serve para capturar os erros e melhorar a experiência do usuário
     } = useForm({
-      resolver: yupResolver(schema)
-    });
+      resolver: yupResolver(schema) // vai fazer com que o envio dos valores dos enviados siga um padrão
+    }); 
   
 
     const [transactionType, setTransactionType] = useState('');
@@ -85,7 +85,7 @@ export function Register(){
         transactionType,
         category: category.key
       }
-      console.log(data);
+      console.log('Log: data', data)
     }
 
     return(
