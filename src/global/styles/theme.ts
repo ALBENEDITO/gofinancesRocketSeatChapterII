@@ -6,7 +6,7 @@ export default {
         secondary_light: 'rgba(255,135,44,0.3)',
         secundary_button: '#6a9cff',
         
-        success: '#98fb98',
+        success: '#228b22',
         success_light: 'rgba(18,164,84,0.5)',
 
         attention: '#E83F5B',

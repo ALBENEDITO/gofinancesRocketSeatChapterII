@@ -48,7 +48,7 @@ const schema = Yup.object().shape({
 
 export function Register(){
 
-    const dataKey = '@gofinances:transactions';
+    
 
 
     const [category, setCategory] = useState({
@@ -72,7 +72,7 @@ export function Register(){
     const [transactionType, setTransactionType] = useState('');
     const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
-    function handleTransactionsTypeSelect(type: 'up' | 'down'){
+    function handleTransactionsTypeSelect(type: 'positive' | 'negative'){
       setTransactionType(type);
     }
 
@@ -96,7 +96,7 @@ export function Register(){
         id: String(uuid.v4()),
         name: form.name,
         amount: form.amount,
-        transactionType,
+        type: transactionType,
         category: category.key,
         date: new Date()
 
@@ -104,6 +104,7 @@ export function Register(){
       
 
       try {
+        const dataKey = '@gofinances:transactions';
         
         const data = await AsyncStorage.getItem(dataKey);
         const currentData = data ? JSON.parse(data) : [];
@@ -130,21 +131,23 @@ export function Register(){
       }
     }
 
-    useEffect(() => {
-      async function loadData() {
+    // useEffect(() => {
+    //   async function loadData() {
 
-        const data = await AsyncStorage.getItem(dataKey); //GETiTEM serve para recuperar todos os dados 
-        console.log(JSON.parse(data!)) // o parse serve para converter o Json novamente em objeto
-                                       // O ! É UM RECURSO DO TYPESCRIPT QUE GARANTE QUE VAI RECEBER UM DADO NESSE "DATA" uma confiança
-      }
-      loadData();
+    //     const dataKey = '@gofinances:transactions';
 
-      //função para remover os store do celuar 
-      // async function removeAll() {
-      //   await AsyncStorage.removeItem(dataKey); 
-      // }
-      // removeAll();
-    },[]);
+    //     const data = await AsyncStorage.getItem(dataKey); //GETiTEM serve para recuperar todos os dados 
+    //     console.log(JSON.parse(data!)) // o parse serve para converter o Json novamente em objeto
+    //                                    // O ! É UM RECURSO DO TYPESCRIPT QUE GARANTE QUE VAI RECEBER UM DADO NESSE "DATA" uma confiança
+    //   }
+    //   loadData();
+
+    //   //função para remover os store do celuar 
+    //   // async function removeAll() {
+    //   //   await AsyncStorage.removeItem(dataKey); 
+    //   // }
+    //   // removeAll();
+    // },[]);
 
     return(
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -176,14 +179,14 @@ export function Register(){
                 <TransactionTypeButton
                   type='up'
                   title="Income"
-                  onPress={() => handleTransactionsTypeSelect('up')}
-                  isActive={transactionType=== 'up'}
+                  onPress={() => handleTransactionsTypeSelect('positive')}
+                  isActive={transactionType=== 'positive'}
                 />
                 <TransactionTypeButton
                   type='down'
                   title="Outcome"
-                  onPress={() => handleTransactionsTypeSelect('down')}
-                  isActive={transactionType=== 'down'}
+                  onPress={() => handleTransactionsTypeSelect('negative')}
+                  isActive={transactionType=== 'negative'}
                 />
               </TransactionsTypes>  
               <CategorySelectButton 
